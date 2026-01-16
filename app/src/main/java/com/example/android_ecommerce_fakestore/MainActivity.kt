@@ -24,6 +24,9 @@ class MainActivity : ComponentActivity() {
 
         // Charger les produits dès le lancement
         viewModel.fetchProducts()
+        viewModel.fetchCategories()
+
+
 
         setContent {
             AndroidecommercefakestoreTheme {

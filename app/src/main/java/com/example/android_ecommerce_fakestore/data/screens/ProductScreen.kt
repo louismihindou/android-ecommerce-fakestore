@@ -6,9 +6,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +24,11 @@ fun ProductScreen(
     onProductClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val products by viewModel.products.collectAsState()
+    val products by viewModel.filteredProducts.collectAsState()
+    val categories by viewModel.categories.collectAsState()
+
+    var expanded by remember { mutableStateOf(false) }
+    var selectedCategory by remember { mutableStateOf("Toutes catégories") }
 
     Column(
         modifier = modifier
@@ -40,6 +42,41 @@ fun ProductScreen(
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 8.dp),
             fontWeight = FontWeight.ExtraBold
         )
+
+        // MENU CATÉGORIES
+        Box {
+            Button(onClick = { expanded = true }) {
+                Text(selectedCategory)
+            }
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+
+                DropdownMenuItem(
+                    text = { Text("Toutes catégories") },
+                    onClick = {
+                        selectedCategory = "Toutes catégories"
+                        expanded = false
+                        viewModel.filterByCategory(null)
+                    }
+                )
+
+                categories.forEach { category ->
+                    DropdownMenuItem(
+                        text = { Text(category) },
+                        onClick = {
+                            selectedCategory = category
+                            expanded = false
+                            viewModel.filterByCategory(category)
+                        }
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 160.dp),
@@ -63,7 +100,7 @@ fun ProductItem(product: Product, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(260.dp)
-            .clickable { onClick() }, // ← Navigation vers détail
+            .clickable { onClick() },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {

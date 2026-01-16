@@ -38,6 +38,5 @@ fun AppNavHost(viewModel: ProductViewModel) {
                 onBack = { navController.popBackStack() }
             )
         }
-
     }
 }
