@@ -3,7 +3,7 @@
 
 package com.example.android_ecommerce_fakestore.data.model
 
-import android.media.Rating
+//import android.media.Rating //v1.1--
 
 data class Product (
     val id: Int,
