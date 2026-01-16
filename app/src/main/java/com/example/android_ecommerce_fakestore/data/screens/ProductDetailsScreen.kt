@@ -5,15 +5,21 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.android_ecommerce_fakestore.viewmodel.ProductViewModel
-import androidx.compose.ui.text.font.FontWeight
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProductDetailScreen(productId: Int, viewModel: ProductViewModel) {
-
+fun ProductDetailScreen(
+    productId: Int,
+    viewModel: ProductViewModel,
+    onBack: () -> Unit
+) {
     val products by viewModel.products.collectAsState()
     val product = products.firstOrNull { it.id == productId }
 
@@ -22,43 +28,65 @@ fun ProductDetailScreen(productId: Int, viewModel: ProductViewModel) {
         return
     }
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(product.title) },
+                navigationIcon = {
+                    IconButton(onClick = { onBack() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Retour"
+                        )
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
 
-        AsyncImage(
-            model = product.image,
-            contentDescription = product.title,
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp),
-            contentScale = ContentScale.Fit
-        )
+                .padding(innerPadding)
+                .padding(16.dp)
+                .fillMaxSize()
+        ) {
 
-        Spacer(modifier = Modifier.height(16.dp))
+            AsyncImage(
+                model = product.image,
+                contentDescription = product.title,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
+                contentScale = ContentScale.Fit
+            )
 
-        Text(
-            text = product.title,
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
-        )
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            text = "${product.price} €",
-            style = MaterialTheme.typography.headlineMedium,
-            color = MaterialTheme.colorScheme.primary
-        )
+            Text(
+                text = product.title,
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            )
 
-        Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "${product.price} €",
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
 
-        Text(
-            text = "Catégorie : ${product.category}",
-            style = MaterialTheme.typography.bodyMedium
-        )
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Catégorie : ${product.category}",
+                style = MaterialTheme.typography.bodyMedium
+            )
 
-        Text(
-            text = product.description,
-            style = MaterialTheme.typography.bodyLarge
-        )
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(
+                text = product.description,
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
     }
 }

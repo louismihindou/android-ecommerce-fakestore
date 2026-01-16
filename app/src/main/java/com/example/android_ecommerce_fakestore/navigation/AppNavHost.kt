@@ -32,7 +32,12 @@ fun AppNavHost(viewModel: ProductViewModel) {
             arguments = listOf(navArgument("productId") { type = NavType.IntType })
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getInt("productId")!!
-            ProductDetailScreen(productId = id, viewModel = viewModel)
+            ProductDetailScreen(
+                productId = id,
+                viewModel = viewModel,
+                onBack = { navController.popBackStack() }
+            )
         }
+
     }
 }
