@@ -2,9 +2,9 @@
 //V1.1 - PIER - Méthodes pour récupérer les catégories de produits et les produits par catégorie via l'API
 //v1.2 - PIER - Rectification categories recupération depuis liste des produits.
 package com.example.android_ecommerce_fakestore.network
-import com.example.android_ecommerce_fakestore.data.model.Product
+//import com.example.android_ecommerce_fakestore.data.model.Product
 import retrofit2.http.GET
-import retrofit2.http.Path
+//import retrofit2.http.Path
 
 interface FakeStoreApiService {
     @GET("products")
