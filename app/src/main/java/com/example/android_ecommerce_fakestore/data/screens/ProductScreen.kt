@@ -1,5 +1,6 @@
 package com.example.android_ecommerce_fakestore.data.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -20,11 +21,18 @@ import com.example.android_ecommerce_fakestore.data.model.Product
 import com.example.android_ecommerce_fakestore.viewmodel.ProductViewModel
 
 @Composable
-fun ProductScreen(viewModel: ProductViewModel, modifier: Modifier = Modifier) {
-
+fun ProductScreen(
+    viewModel: ProductViewModel,
+    onProductClick: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val products by viewModel.products.collectAsState()
 
-    Column(modifier = modifier.fillMaxSize().padding(horizontal = 8.dp)) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 8.dp)
+    ) {
 
         Text(
             text = "Catalogue",
@@ -40,18 +48,22 @@ fun ProductScreen(viewModel: ProductViewModel, modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(products) { product ->
-                ProductItem(product)
+                ProductItem(
+                    product = product,
+                    onClick = { onProductClick(product.id) }
+                )
             }
         }
     }
 }
 
 @Composable
-fun ProductItem(product: Product) {
+fun ProductItem(product: Product, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(260.dp),
+            .height(260.dp)
+            .clickable { onClick() }, // ← Navigation vers détail
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
@@ -84,7 +96,9 @@ fun ProductItem(product: Product) {
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Black,
-                modifier = Modifier.fillMaxWidth().padding(top = 4.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp)
             )
         }
     }

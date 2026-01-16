@@ -1,5 +1,6 @@
 #V1.1 - PIER - Ajout pour dépendances backend
 #V1.1 - Louis- Ajout de coil pour récuperer les images
+#V1.1 - Louis - Ajout de Navigation.compose pour naviguer
 
 [versions]
 agp = "8.9.0"
@@ -22,6 +23,8 @@ lifecycle = "2.6.1"
 coil = "2.4.0"
 
 #v1.1>>++
+
+navigation = "2.7.7" #v1.1>>++
 
 
 
@@ -52,8 +55,11 @@ lifecycle-runtime-ktx = {group="androidx.lifecycle", name="lifecycle-runtime-ktx
 
 #v1.1<<++
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
-
 #v1.1>>++
+
+
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" } #v1.1>>++
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
