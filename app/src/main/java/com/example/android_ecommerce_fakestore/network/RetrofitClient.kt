@@ -1,5 +1,3 @@
-//V1.0 - PIER - Init
-
 package com.example.android_ecommerce_fakestore.network
 
 import retrofit2.Retrofit
@@ -8,11 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
     private const val BASE_URL = "https://fakestoreapi.com/"
 
-    val apiService: FakeStoreApiService by lazy {
+    val apiService: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(FakeStoreApiService::class.java)
+            .create(ApiService::class.java)
     }
 }

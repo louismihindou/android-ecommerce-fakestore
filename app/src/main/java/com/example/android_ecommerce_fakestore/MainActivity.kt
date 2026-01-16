@@ -8,9 +8,8 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import com.example.android_ecommerce_fakestore.network.RetrofitClient
 import com.example.android_ecommerce_fakestore.data.repository.ProductRepository
 import com.example.android_ecommerce_fakestore.data.screens.ProductScreen
 import com.example.android_ecommerce_fakestore.ui.theme.AndroidecommercefakestoreTheme
@@ -20,7 +19,7 @@ import com.example.android_ecommerce_fakestore.viewmodel.ProductViewModelFactory
 class MainActivity : ComponentActivity() {
 
     private val viewModel: ProductViewModel by viewModels {
-        ProductViewModelFactory(ProductRepository())
+        ProductViewModelFactory(ProductRepository(RetrofitClient.apiService))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

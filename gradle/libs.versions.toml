@@ -17,6 +17,9 @@ kotlinx-coroutines = "1.6.4"
 lifecycle = "2.6.1"
 #v1.1<<++
 
+coil = "2.4.0"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -40,6 +43,9 @@ kotlinx-coroutines-android = {group= "org.jetbrains.kotlinx", name = "kotlinx-co
 lifecycle-viewmodel-ktx = {group="androidx.lifecycle", name="lifecycle-viewmodel-ktx", version.ref="lifecycle"}
 lifecycle-runtime-ktx = {group="androidx.lifecycle", name="lifecycle-runtime-ktx", version.ref="lifecycle"}
 #v1.1<<++
+
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
