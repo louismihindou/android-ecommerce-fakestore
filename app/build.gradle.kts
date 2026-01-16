@@ -1,4 +1,7 @@
 // V1.1 - PIER - Ajout pour dépendances backend
+//V1.1 - Louis - Ajout de Coil pour récupérer les images
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -59,8 +62,9 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     //v1.1>>++
 
+    //v1.1<<++
     implementation(libs.coil.compose)
-
+    //v1.1>>++
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

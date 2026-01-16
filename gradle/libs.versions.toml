@@ -1,4 +1,5 @@
 #V1.1 - PIER - Ajout pour dépendances backend
+#V1.1 - Louis- Ajout de coil pour récuperer les images
 
 [versions]
 agp = "8.9.0"
@@ -17,7 +18,12 @@ kotlinx-coroutines = "1.6.4"
 lifecycle = "2.6.1"
 #v1.1<<++
 
+#v1.1<<++
 coil = "2.4.0"
+
+#v1.1>>++
+
+
 
 
 [libraries]
@@ -44,8 +50,10 @@ lifecycle-viewmodel-ktx = {group="androidx.lifecycle", name="lifecycle-viewmodel
 lifecycle-runtime-ktx = {group="androidx.lifecycle", name="lifecycle-runtime-ktx", version.ref="lifecycle"}
 #v1.1<<++
 
+#v1.1<<++
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
+#v1.1>>++
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
