@@ -1,5 +1,5 @@
 //V1.0 - PIER - Init
-//v1.1 - PIER - Rectification champs produit
+//v1.1 - PIER - Rectification champs produit (mauvais types)
 
 package com.example.android_ecommerce_fakestore.data.model
 
