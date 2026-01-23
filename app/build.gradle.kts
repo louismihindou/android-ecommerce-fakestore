@@ -1,6 +1,8 @@
 // V1.1 - PIER - Ajout pour dépendances backend
 //V1.1 - Louis - Ajout de Coil pour récupérer les images
-//V1.1 - Louis - Ajout de Navigation.compose pour naviguer
+//V1.2 - Louis - Ajout de Navigation.compose pour naviguer
+//V1.5 - Louis - Ajout de Materials pour l'UI
+
 
 
 plugins {
@@ -67,7 +69,11 @@ dependencies {
     implementation(libs.coil.compose)
     //v1.1>>++
 
-    implementation(libs.navigation.compose) //v1.1<<++
+    implementation(libs.navigation.compose) //v1.2<<++
+
+    //v1.5>>++
+    implementation(libs.androidx.material3)
+
 
 
     testImplementation(libs.junit)

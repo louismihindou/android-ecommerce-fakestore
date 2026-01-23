@@ -1,5 +1,6 @@
 //V1.0 - PIER - Init
 //V1.1 - PIER - Recuperation categories
+//V1.2 - PIER - Tri produits
 
 package com.example.android_ecommerce_fakestore.viewmodel
 
@@ -12,13 +13,19 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
+//V1.2++<< Enum pour le tri
+enum class SortType {
+    PRICE_ASC,
+    PRICE_DESC,
+    NAME_ASC,
+    NAME_DESC
+}
+//V1.2++>>
 
 class ProductViewModel(private val repository: ProductRepository) : ViewModel() {
 
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products.asStateFlow()
-
 
     //v1.1++<<
     private val _categories = MutableStateFlow<List<String>>(emptyList())
@@ -27,7 +34,6 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
     private val _filteredProducts = MutableStateFlow<List<Product>>(emptyList())
     val filteredProducts: StateFlow<List<Product>> = _filteredProducts.asStateFlow()
     //v1.1++>>
-
 
     fun fetchProducts() {
         viewModelScope.launch {
@@ -54,4 +60,17 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         }
     }
     //v1.1++>>
+
+    //V1.2++<< Tri des produits
+    fun sortProducts(type: SortType) {
+        val currentList = _filteredProducts.value
+
+        _filteredProducts.value = when (type) {
+            SortType.PRICE_ASC -> currentList.sortedBy { it.price }
+            SortType.PRICE_DESC -> currentList.sortedByDescending { it.price }
+            SortType.NAME_ASC -> currentList.sortedBy { it.title.lowercase() }
+            SortType.NAME_DESC -> currentList.sortedByDescending { it.title.lowercase() }
+        }
+    }
+    //V1.2++>>
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.android_ecommerce_fakestore.data.model.Product
 import com.example.android_ecommerce_fakestore.viewmodel.ProductViewModel
+import com.example.android_ecommerce_fakestore.viewmodel.SortType
 
 @Composable
 fun ProductScreen(
@@ -29,6 +30,11 @@ fun ProductScreen(
 
     var expanded by remember { mutableStateOf(false) }
     var selectedCategory by remember { mutableStateOf("Toutes catégories") }
+
+    //V1.2++<< Tri
+    var sortExpanded by remember { mutableStateOf(false) }
+    var selectedSort by remember { mutableStateOf("Tri : Aucun") }
+    //V1.2++>>
 
     Column(
         modifier = modifier
@@ -75,6 +81,58 @@ fun ProductScreen(
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        //V1.2++<< MENU TRI
+        Box {
+            Button(onClick = { sortExpanded = true }) {
+                Text(selectedSort)
+            }
+
+            DropdownMenu(
+                expanded = sortExpanded,
+                onDismissRequest = { sortExpanded = false }
+            ) {
+
+                DropdownMenuItem(
+                    text = { Text("Prix : Croissant") },
+                    onClick = {
+                        selectedSort = "Prix : Croissant"
+                        sortExpanded = false
+                        viewModel.sortProducts(SortType.PRICE_ASC)
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = { Text("Prix : Décroissant") },
+                    onClick = {
+                        selectedSort = "Prix : Décroissant"
+                        sortExpanded = false
+                        viewModel.sortProducts(SortType.PRICE_DESC)
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = { Text("Nom : A → Z") },
+                    onClick = {
+                        selectedSort = "Nom : A → Z"
+                        sortExpanded = false
+                        viewModel.sortProducts(SortType.NAME_ASC)
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = { Text("Nom : Z → A") },
+                    onClick = {
+                        selectedSort = "Nom : Z → A"
+                        sortExpanded = false
+                        viewModel.sortProducts(SortType.NAME_DESC)
+                    }
+                )
+            }
+        }
+        //V1.2++>>
 
         Spacer(modifier = Modifier.height(16.dp))
 
