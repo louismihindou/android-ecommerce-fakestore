@@ -41,14 +41,21 @@ Application Androird développée en Kotlin avec Jetpack Compose, utilisant l'AP
 
 ##Structure du projet 
 
+```text
 app/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/example/android_ecommerce_faketore/
-│   │   │   ├── data/          # Modèles et repositories
-│   │   │   ├── network/       # Appels API
-│   │   │   ├── ui/            # Écrans Compose
-│   │   │   └── viewmodel/     # ViewModels
+│   │   │   ├── data/
+│   │   │   │   ├── model/          # Modèles de données (Product, CartItem)
+│   │   │   │   ├── repository/     # Logique métier (ProductRepository, CartRepository)
+│   │   │   │   └── database/       # Base de données Room (CartDao, AppDatabase)
+│   │   │   ├── network/            # Appels API (Retrofit, FakeStoreApiService)
+│   │   │   ├── ui/                 # Écrans Compose (ProductScreen, ProductDetailScreen)
+│   │   │   └── viewmodel/          # ViewModels (ProductViewModel, CartViewModel)
+│   │   └── res/                    # Ressources (images, layouts, etc.)
+```
+
 
 ##Configuration
 1. Cloner le dépôt.
