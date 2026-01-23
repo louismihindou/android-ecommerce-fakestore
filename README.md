@@ -61,7 +61,7 @@ app/
 1. Cloner le dépôt.
 2. Lancer l'application sur un émulateur ou un appareil physique. 
 
-**Prérequis
+**Prérequis**
 - Android Studio 
 - SDK API 24 "Nougat" 
 - Connexion internet pour les appels API.
