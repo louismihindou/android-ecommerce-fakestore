@@ -1,8 +1,10 @@
 // V1.1 - PIER - Ajout pour dépendances backend
+//v1.4 - PIER - Dependence Room
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+   id("kotlin-kapt")
 }
 
 android {
@@ -58,6 +60,11 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     //v1.1>>++
+    //v1.4<<++
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+    //v1.4>>++
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

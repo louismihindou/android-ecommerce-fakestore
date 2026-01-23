@@ -30,6 +30,8 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
                 //test - a ne pas conserver<<
                 Log.d("ProductViewModel", "Produits chargés : ${_products.value}")
                 // Affiche la liste des produits dans les logs
+                fetchCategories() //appelle des categories - voir si a conserver.
+                fetchGetProductsByCategory("men's clothing")
             } catch (e: Exception) {
             Log.e("ProductViewModel", "Erreur lors du chargement des produits : ${e.message}")
             // Affiche une erreur si le chargement échoue
