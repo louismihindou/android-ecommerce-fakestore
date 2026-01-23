@@ -7,7 +7,7 @@ Application Androird développée en Kotlin avec Jetpack Compose, utilisant l'AP
 
 ---
 
-##Fonctionnalités 
+## Fonctionnalités 
 - Affichage des produits (grille + détails).
     - Grille de produits avec image, titre, prix et catégorie.
     - Ecran de détails pour chaque produit (description complète, image, etc.).
@@ -23,7 +23,7 @@ Application Androird développée en Kotlin avec Jetpack Compose, utilisant l'AP
 
 ---
 
-##Technologies
+## Technologies
 - **Langage** : Kotlin
     - Langage principal de l'application.
 - **UI** : Jetpack Compose
@@ -39,7 +39,7 @@ Application Androird développée en Kotlin avec Jetpack Compose, utilisant l'AP
 
 ---
 
-##Structure du projet 
+## Structure du projet 
 
 ```text
 app/
@@ -57,7 +57,7 @@ app/
 ```
 
 
-##Configuration
+## Configuration
 1. Cloner le dépôt.
 2. Lancer l'application sur un émulateur ou un appareil physique. 
 
@@ -66,13 +66,13 @@ app/
 - SDK API 24 "Nougat" 
 - Connexion internet pour les appels API.
 
-##UI
+## UI
 - 1 : écran catalogue 
     - Grille de produits avec filtre par catégorie.
 - 2 : Détails d'un produit :
     - Affichage détaillé (image, titre, prix, description).
 
-##Auteurs 
+## Auteurs 
 - **Backend** : MALEZIEUX Pierrette
 - **Frontend** : MIHINDOU MIHINDOU Louis
 
